@@ -1,0 +1,6 @@
+2026-09-28 12:14:55 - FAILED: missing host argument
+2026-09-28 12:14:55 - RESOLVE_OK: host='localhost' address='::1'
+2026-09-28 12:14:55 - PING_OK: host='localhost'
+2026-09-28 12:14:55 - FAILED: invalid port '0' for host 'localhost'
+2026-09-28 12:14:56 - FAILED: invalid port '65536' for host 'localhost'
+2026-09-28 12:14:56 - FAILED: invalid port 'abc' for host 'localhost'
