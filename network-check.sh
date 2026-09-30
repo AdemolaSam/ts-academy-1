@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# network-check.sh <hostname-or-ip> [port]
 # Resolves host, checks basic connectivity, shows interfaces, optionally checks a TCP port.
 # Exit 0: host resolved successfully
 # Exit 1: host could not be resolved (but input was valid)

@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# disk-check.sh <threshold> [path]
-# Exit 0: usage below threshold
-# Exit 1: usage at/above threshold
-# Exit 2: invalid input
 
 set -u
 
