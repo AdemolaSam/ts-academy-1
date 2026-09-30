@@ -1,0 +1,4 @@
+logs/disk-check.log
+logs/network-check.log
+logs/system-info.log
+logs/*.log

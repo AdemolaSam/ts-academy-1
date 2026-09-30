@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
-# system-info.sh
-# Displays hostname, user, date/time, OS, kernel, uptime, CPU, memory, cwd.
-# All values are read from the running system at call time.
+#!/bin/bash
+# Displays the following:
+# hostname, current user, date/time, operating system, kernel version, uptime, CPU information, memory information
+# and current working directory.
 
 set -u
 
@@ -16,36 +16,37 @@ log() {
 
 log "system-info.sh: run started"
 
-echo "===== System Information ====="
-echo "Hostname        : $(hostname)"
-echo "Current User    : $(whoami)"
-echo "Date/Time       : $(date '+%Y-%m-%d %H:%M:%S %Z')"
-echo "Operating System: $(uname -s)"
 
-if [[ -f /etc/os-release ]]; then
-    # shellcheck disable=SC1091
-    . /etc/os-release
-    echo "Distribution    : ${PRETTY_NAME:-unknown}"
-fi
+echo ".................................................."
+echo "               SYSTEM INFORMATION                 "
+echo ".................................................."
 
-echo "Kernel Version  : $(uname -r)"
-echo "Uptime          : $(uptime -p 2>/dev/null || uptime)"
-echo
+# Hostname, current user, date/time, OS, kernel version, uptime,
 
-echo "----- CPU Information -----"
-if command -v lscpu >/dev/null 2>&1; then
-    lscpu | grep -E 'Model name|^CPU\(s\)|Thread\(s\) per core|Core\(s\) per socket'
-else
-    grep -m1 'model name' /proc/cpuinfo 2>/dev/null || echo "CPU model information unavailable"
-    grep -c '^processor' /proc/cpuinfo 2>/dev/null | xargs -I{} echo "Logical CPUs: {}"
-fi
-echo
+echo "Hostname: $(hostname)"
+echo "Current user: $(whoami)"
+echo "Date and time: $(date +'%d-%m-%y/%H:%M:%S %Z')"
+echo "OS: $(uname)"
+source /etc/os-release
+echo "Distribution: $PRETTY_NAME"
+echo "OS version: $VERSION"
+echo "Kernel version: $(uname -v)"
+echo "Uptime: $(uptime -p)"
 
-echo "----- Memory Information -----"
-free -h 2>/dev/null || echo "Memory information unavailable"
-echo
 
-echo "Current Directory: $(pwd)"
+# CPU INFORMATION
+
+echo "========================= CPU =============================="
+echo "$(lscpu | grep -E "Model name|Architecture|core|thread|CPU")"
+
+# MEMORY
+
+echo "========================= Memory ==========================="
+echo "$(free -h)"
+
+# CURRENT WORKING DIRECTORY
+
+echo "=============== Current Working Directory =================="
+echo "Current directory: $(pwd)"
 
 log "system-info.sh: run completed successfully"
-exit 0
