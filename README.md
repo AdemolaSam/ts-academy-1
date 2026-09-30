@@ -1,4 +1,4 @@
-# Assignment 1 — Linux Diagnostic Toolkit
+# 1. Linux Diagnostic Toolkit
 
 A small Bash-based diagnostic toolkit: system info, disk usage checks, and
 basic network checks.
@@ -22,6 +22,8 @@ chmod +x *.sh
 ```
 
 ## Usage
+
+How to use:
 
 ```bash
 ./system-info.sh
